@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:helloworld/counter.dart';
 import 'package:helloworld/BMICalc.dart';
+import 'package:helloworld/accelerometerSensor.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,6 +44,15 @@ class HomePage extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const BMICalc()),
+            );
+          },
+        ),
+        ElevatedButton(
+              child: const Text('Accelerometer Page'),
+            onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AccelerometerPage()),
             );
           },
         ),
