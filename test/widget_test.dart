@@ -15,16 +15,35 @@ void main() {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+    // Tap the 'Reset' button and trigger a frame.
+    await tester.tap(find.text('Reset'));
+    await tester.pump();
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
+    // Verify that our counter has reset to 0.
+    expect(find.text('0 ... and counting'), findsOneWidget);
+    expect(find.text('-1 ... and counting'), findsNothing);
+
+    // Tap the 'Decrement' button and trigger a frame.
+    await tester.tap(find.text('Decrement'));
     await tester.pump();
 
     // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+    expect(find.text('0 ... and counting'), findsNothing);
+    expect(find.text('-1 ... and counting'), findsOneWidget);
+
+    await tester.tap(find.text('Increment'));
+    await tester.pump();
+
+    // Verify that our counter has incremented.
+    expect(find.text('-1 ... and counting'), findsNothing);
+    expect(find.text('0 ... and counting'), findsOneWidget);
+
+    // Tap the 'Reset' button and trigger a frame.
+    await tester.tap(find.text('Reset'));
+    await tester.pump();
+
+    // Verify that our counter has reset to 0.
+    expect(find.text('0 ... and counting'), findsOneWidget);
+    expect(find.text('-1 ... and counting'), findsNothing);
   });
 }
