@@ -10,7 +10,6 @@ class AccelerometerPage extends StatefulWidget {
 }
 
 class _AccelerometerPageState extends State<AccelerometerPage> {
-  // Subscription to accelerometer events
   StreamSubscription<AccelerometerEvent>? _sensorSubscription;
   final List<AccelerometerEvent> _events = [];
 
@@ -18,7 +17,6 @@ class _AccelerometerPageState extends State<AccelerometerPage> {
   void initState() {
     super.initState();
 
-    // Listen to accelerometer events with normal sampling rate
     _sensorSubscription = accelerometerEvents.listen((event) {
       setState(() {
         _events.add(event);
